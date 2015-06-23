@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(../fonts/Roboto-Bold.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Italic'), local('Roboto-Italic'), url(../fonts/Roboto-Italic.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 500;
+  src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(../fonts/Roboto-MediumItalic.ttf) format('ttf');
+}
+@font-face {
+  font-family: 'icomoon';
+  src:url('../fonts/icomoon.eot?2zsywb');
+  src:url('../fonts/icomoon.eot?#iefix2zsywb') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?2zsywb') format('truetype'),
+  url('../fonts/icomoon.woff?2zsywb') format('woff'),
+  url('../fonts/icomoon.svg?2zsywb#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0;
+}
+
+[class^="icomoon-icon-"], [class*=" icomoon-icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icomoon-icon-menu:before {
+  content: "\e9bd";
+}
+.icomoon-icon-add:before {
+  content: "\ea0a";
+}
+.icomoon-icon-delete:before {
+  content: "\ea0b";
+}
+.icomoon-icon-cross:before {
+  content: "\ea0f";
+}
+.icomoon-icon-checkmark:before {
+  content: "\ea10";
+}
+.icomoon-icon-refresh:before {
+  content: "\ea2e";
+}
+.icomoon-icon-sort-alpha-asc:before {
+  content: "\ea48";
+}
+.icomoon-icon-sort-alpha-desc:before {
+  content: "\ea49";
+}
+
+.users-toolbar {
+  height: 48px !important;
+  margin-bottom: 5px;
+}
+
+#left-nav {
+  font-size: 12pt;
+}
+
+.input-elements-column {
+  * {
+    display: block;
+    width: 80%;
+  }
+  float: left;
+  width: 50%;
+  margin-top: -40px;
+  margin-bottom: 10px;
+  padding: 0px;
+  display: inline-block;
+}
+
+.user-dialog > div:nth-child(1) {
+  padding: 24px 0px 24px 0px;
+}
+
+.user-item  {
+  .delete-button {
+    position: absolute !important;
+    right: 20px;
+    top: 2px;
+    z-index: 100;
+  }
+}

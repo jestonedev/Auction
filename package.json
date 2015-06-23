@@ -1,0 +1,29 @@
+{
+  "name": "empty",
+  "version": "1.0.0",
+  "description": "empty description",
+  "author": "JeStoneDev",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "*",
+    "gulp-babel": "^5.1.0",
+    "gulp-base64": "*",
+    "gulp-minify-css": "*",
+    "gulp-react": "^3.0.1",
+    "gulp-rigger": "*",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
+    "gulp-watch": "*",
+    "opn": "*",
+    "rimraf": "*",
+    "webpack": "*",
+    "react-router": "*",
+    "react": "*",
+    "material-ui": "*",
+    "react-tap-event-plugin ": "*",
+    "es6-promise": "^2.3.0",
+    "isomorphic-fetch": "^2.1.0"
+  }
+}
