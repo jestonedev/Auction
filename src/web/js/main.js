@@ -4,21 +4,25 @@
 import React from 'react';
 import Router from 'react-router';
 import { Route, NotFoundRoute, DefaultRoute } from 'react-router';
-import App from './App';
-import Users from './Users';
-import Auctions from './Auctions';
-import Home from './Home';
-import NotFound from './NotFound';
+import App from './App.jsx';
+import Users from './Users.jsx';
+import Auctions from './Auctions.jsx';
+import Login from './Login.jsx';
+import Logout from './Logout.jsx';
+import Home from './Home.jsx';
+import NotFound from './NotFound.jsx';
 import FluxComponent from 'flummox/component';
-import Flux from './Flux'
+import Flux from './Flux.jsx'
 import performRouteHandlerStaticMethod from './performRouteHandlerStaticMethod.js';
 
 let routes = (
-    <Route handler={App}>
+    <Route path="/" handler={App}>
+        <Route name="home" path="home" handler={Home}/>
         <Route name="users" path="users" handler={Users}/>
         <Route name="auctions" path="auctions" handler={Auctions}/>
+        <Route name="login" path="login" handler={Login}/>
+        <Route name="logout" path="logout" handler={Logout}/>
         <NotFoundRoute handler={NotFound}/>
-        <Route name="home" path="/" handler={Home}/>
         <DefaultRoute handler={Home} />
     </Route>
 );

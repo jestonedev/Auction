@@ -3,9 +3,10 @@
  */
 import React from 'react';
 import Flux from 'flummox/component';
-import UsersList from './UsersList';
-import UsersToolbar from './UsersToolbar';
-import UserDialog from './UserDialog';
+import Auth from './Auth.js';
+import UsersList from './UsersList.jsx';
+import UsersToolbar from './UsersToolbar.jsx';
+import UserDialog from './UserDialog.jsx';
 
 class Users extends React.Component {
     static routerWillRun ({state, flux}) {
@@ -22,6 +23,14 @@ class Users extends React.Component {
         this.updateUser = this.updateUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
         this.refreshUsers = this.refreshUsers.bind(this);
+    }
+
+    static willTransitionTo(transition, params, query, callback)
+    {
+        if (!Auth.loggedIn())
+            transition.redirect('login', params, query);
+        if (callback)
+            callback();
     }
 
     showAddUserDialog()
@@ -50,7 +59,6 @@ class Users extends React.Component {
     {
         this.props.flux.getActions('Users').deleteUser(id);
     }
-
 
     refreshUsers()
     {

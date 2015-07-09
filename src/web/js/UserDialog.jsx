@@ -84,44 +84,41 @@ class UserDialog extends React.Component {
     }
 
     render() {
-        var actions = [
+        let actions = [
             { text: 'Сохранить', onTouchTap: this._onDialogSubmit, ref: 'submit' },
             { text: 'Отменить' }
         ];
+        let title = this.state.user.id == undefined ? 'Новый пользователь' : this.state.user.name
 
-        return <Dialog ref="Dialog" title="Пользователь" actions={actions} modal={true}>
-            <div>
-                <div className="input-elements-column">
-                    <TextField
-                        hintText="Введите имя"
-                        floatingLabelText="Имя пользователя"
-                        errorText={this.state.errorUserText}
-                        value={this.state.user.name}
-                        onChange={this._handleNameChange}
-                        maxLength={20}/>
-                    <TextField
+        return <Dialog ref="Dialog" title={title} actions={actions} modal={true}>
+            <div className="user-dialog">
+                <TextField onEnterKeyDown={this._onDialogSubmit}
+                    hintText="Введите имя"
+                    floatingLabelText="Имя пользователя"
+                    errorText={this.state.errorUserText}
+                    value={this.state.user.name}
+                    onChange={this._handleNameChange}
+                    maxLength={20}/>
+                <TextField onEnterKeyDown={this._onDialogSubmit}
                     hintText="Введите описание"
                     floatingLabelText="Описание пользователя"
                     value={this.state.user.description}
                     onChange={this._handleDescriptionChange}
                     maxLength={255}/>
-                </div>
-                <div className="input-elements-column">
-                    <TextField
+                <TextField onEnterKeyDown={this._onDialogSubmit}
                     hintText="Введите пароль"
                     floatingLabelText="Пароль"
                     errorText={this.state.errorHashText}
                     value={this.state.user.hash}
                     onChange={this._handleHashChange}
                     maxLength={255} type="password"/>
-                    <TextField
-                        hintText="Введите пароль еще раз"
-                        floatingLabelText="Пароль еще раз"
-                        errorText={this.state.errorHashCheckText}
-                        value={this.state.user.hash_check}
-                        onChange={this._handleHashCheckChange}
-                        maxLength={255} type="password"/>
-                </div>
+                <TextField onEnterKeyDown={this._onDialogSubmit}
+                    hintText="Введите пароль еще раз"
+                    floatingLabelText="Пароль еще раз"
+                    errorText={this.state.errorHashCheckText}
+                    value={this.state.user.hash_check}
+                    onChange={this._handleHashCheckChange}
+                    maxLength={255} type="password"/>
             </div>
         </Dialog>
     }

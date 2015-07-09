@@ -3,16 +3,12 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
     cssmin = require('gulp-minify-css'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    rigger = require('gulp-rigger'),
 	base64 = require('gulp-base64'),
     rimraf = require('rimraf'),
     opn = require('opn'),
-    react = require('gulp-react'),
-    babel = require('gulp-babel'),
     webpack = require("webpack");
 	
 var path = {
@@ -63,31 +59,11 @@ gulp.task('openbrowser', function() {
     opn( 'http://' + server.host + ':' + server.port + '/' +  server.dir );
 });
 
-gulp.task('customJs:build', function () {
-    gulp.src(path.src.customJs)
-        .pipe(rigger())
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(path.build.customJs));
-});
-
 gulp.task('js:build', function () {
     gulp.src(path.src.js)
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(path.build.js));
-});
-
-gulp.task('jsx:build', function () {
-    gulp.src(path.src.jsx)
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(react())
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(path.build.jsx));
 });
 
 gulp.task('scss:build', function () {
@@ -135,11 +111,12 @@ gulp.task('other:build', function () {
 gulp.task('webpack', function(callback) {
     webpack({
         // configuration
-        context: __dirname + "/build/web/js",
+        context: __dirname + "/src/web/js",
         entry: { main: [ "./main.js" ] },
         output: {
             path: __dirname + "/build/web/js",
-            filename: "[name].bundle.js"
+            filename: "[name].bundle.js",
+            sourceMapFilename: "[file].map"
         },
         plugins: [
             /*new webpack.optimize.UglifyJsPlugin({
@@ -147,21 +124,32 @@ gulp.task('webpack', function(callback) {
                     warnings: false
                 }
             })*/
-        ]
+        ],
+        devtool: 'eval-source-map',
+        module: {
+            loaders: [
+                {
+                    test: /\.js/,
+                    loaders: ['transform?brfs', 'babel-loader?stage=0']
+                }
+            ]
+        },
+        resolve: {
+            extensions: ['', '.js', '.json', '.jsx']
+        }
     }, function(err, stats) {
         callback();
     });
 });
 
 gulp.task('build', [
-	'customJs:build',
     'js:build',
-    'jsx:build',
     'scss:build',
     'css:build',
     'image:build',
 	'vendor:build',
-    'other:build'
+    'other:build',
+    'webpack'
 ]);
 
 gulp.task('watch', function(){

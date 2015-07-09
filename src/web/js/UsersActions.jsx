@@ -5,21 +5,22 @@
 import { Actions } from 'flummox';
 import fetch from 'isomorphic-fetch';
 
-const API_HOST = 'http://itc28/yii/build/web';
+const API_HOST = 'http://itc28/auction/build/web';
 
 class UsersActions extends Actions {
-    getUsers()
+
+    async getUsers()
     {
-        return [
-            { id: 1, name: "Василий", description: "Тут может быть ваша реклама" },
-            { id: 2, name: "Константин", description: "Хуяк, хуяк и в продакшен" },
-            { id: 3, name: "Алексей", description: "Хто тут?" }
-        ]
+        return (await fetch(`${API_HOST}/?r=user/index`, {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })).json();
     }
 
     deleteUser(id)
     {
-        return { id: id }
+        return { id: id };
     }
 
     createUser(user)
@@ -30,7 +31,9 @@ class UsersActions extends Actions {
 
     updateUser(user)
     {
-        return { id: 3, name: "Зигмунд" }
+        user.hash = undefined;
+        user.hash_check = undefined;
+        return user;    //TODO - don't save hash password on client
     }
 }
 

@@ -34,19 +34,16 @@
   font-weight: 500;
   src: local('Roboto Medium Italic'), local('Roboto-MediumItalic'), url(../fonts/Roboto-MediumItalic.ttf) format('ttf');
 }
+
 @font-face {
   font-family: 'icomoon';
-  src:url('../fonts/icomoon.eot?2zsywb');
-  src:url('../fonts/icomoon.eot?#iefix2zsywb') format('embedded-opentype'),
-  url('../fonts/icomoon.ttf?2zsywb') format('truetype'),
-  url('../fonts/icomoon.woff?2zsywb') format('woff'),
-  url('../fonts/icomoon.svg?2zsywb#icomoon') format('svg');
+  src:url('../fonts/icomoon.eot?p8n1hc');
+  src:url('../fonts/icomoon.eot?#iefixp8n1hc') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?p8n1hc') format('truetype'),
+  url('../fonts/icomoon.woff?p8n1hc') format('woff'),
+  url('../fonts/icomoon.svg?p8n1hc#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
-}
-
-html, body {
-  margin: 0;
 }
 
 [class^="icomoon-icon-"], [class*=" icomoon-icon-"] {
@@ -63,16 +60,28 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icomoon-icon-home3:before {
+  content: "\e902";
+}
+.icomoon-icon-edit:before {
+  content: "\e905";
+}
+.icomoon-icon-user:before {
+  content: "\e971";
+}
+.icomoon-icon-hammer2:before {
+  content: "\e9a8";
+}
 .icomoon-icon-menu:before {
   content: "\e9bd";
 }
 .icomoon-icon-add:before {
   content: "\ea0a";
 }
-.icomoon-icon-delete:before {
+.icomoon-icon-minus:before {
   content: "\ea0b";
 }
-.icomoon-icon-cross:before {
+.icomoon-icon-delete:before {
   content: "\ea0f";
 }
 .icomoon-icon-checkmark:before {
@@ -88,37 +97,129 @@ html, body {
   content: "\ea49";
 }
 
-.users-toolbar {
+.users-toolbar, .auctions-toolbar {
   height: 48px !important;
   margin-bottom: 5px;
+}
+
+.icomoon-icon-hammer2 {
+  margin-top: 20px;
+  margin-left: 5px;
+  color: rgb(255, 64, 129) !important;
+}
+
+.icomoon-icon-user {
+  margin-top: 2px;
+  margin-left: 5px;
+  color: rgb(255, 64, 129) !important;
+}
+
+body {
+  margin: 0px;
 }
 
 #left-nav {
   font-size: 12pt;
 }
 
-.input-elements-column {
-  * {
-    display: block;
-    width: 80%;
-  }
-  float: left;
-  width: 50%;
+.user-dialog, .auction-dialog {
   margin-top: -40px;
-  margin-bottom: 10px;
-  padding: 0px;
-  display: inline-block;
+  div {
+    min-width: 200px;
+    @media (min-width: 600px)
+    {
+      width: 45% !important;
+      &:nth-child(even) {
+        float: right;
+      }
+    }
+    @media (max-width: 599px)
+    {
+      width: 100% !important;
+    }
+  }
 }
 
-.user-dialog > div:nth-child(1) {
-  padding: 24px 0px 24px 0px;
-}
-
-.user-item  {
+.user-item, .auction-item  {
   .delete-button {
     position: absolute !important;
     right: 20px;
     top: 2px;
     z-index: 100;
   }
+}
+
+.login-paper {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin-top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  padding: 5px;
+  min-width: 500px;
+
+  .login-error {
+    color: rgb(255, 64, 129);
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .login-input-wrapper {
+    display: flex;
+    @media (min-width: 700px) {
+      flex-direction: row;
+      justify-content: center;
+    }
+    @media (max-width: 699px) {
+      flex-direction: column;
+      align-items: center;
+      button {
+        margin: 10px;
+      }
+    }
+    div {
+      margin: 0px 10px;
+    }
+  }
+  .login-submit-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.app-wrapper {
+  width: 100%;
+}
+
+.user-delete-button, .auction-delete-button {
+  position: absolute !important;
+  right: 0px;
+  margin-top: -20px;
+  transition: opacity 1.5s linear;
+  opacity: 0;
+}
+
+.user-update-button, .auction-update-button {
+  position: absolute !important;
+  right: 35px;
+  margin-top: -20px;
+  transition: opacity 1.5s linear;
+  opacity: 0;
+}
+
+.auction-item:hover .auction-update-button, .auction-item:hover .auction-delete-button,
+.user-item:hover .user-update-button, .user-item:hover .user-delete-button {
+  opacity: 1;
+}
+
+.auctions-list, .users-list {
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  width: 95%;
+  z-index: -1;
 }

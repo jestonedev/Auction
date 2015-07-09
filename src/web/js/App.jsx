@@ -5,6 +5,7 @@
 import React from 'react';
 import {AppBar, LeftNav, Styles, MenuItem } from 'material-ui';
 import {Router, RouteHandler} from 'react-router';
+import Auth from './Auth.js';
 
 var InjectTapEventPlugin = require("react-tap-event-plugin");
 InjectTapEventPlugin();
@@ -17,6 +18,21 @@ class App extends React.Component {
         this._routePage = this._routePage.bind(this)
         this._toggleNavBar = this._toggleNavBar.bind(this)
         this._selectedNavPage = this._selectedNavPage.bind(this)
+        this._setStateOnAuth = this._setStateOnAuth.bind(this)
+        this.state = {
+            loggedIn: Auth.loggedIn()
+        };
+    }
+
+    _setStateOnAuth(loggedIn) {
+        this.setState({
+            loggedIn: loggedIn
+        });
+    }
+
+    componentWillMount() {
+        Auth.addCallback(this._setStateOnAuth);
+        Auth.login();
     }
 
     static get contextTypes()  {
@@ -63,16 +79,28 @@ class App extends React.Component {
                 text: 'Сайт администрации'
             }
         ];
+        if (Auth.loggedIn())
+            menuItems.push({route: 'logout', text: 'Выйти'});
+        else
+            menuItems.push({route: 'login', text: 'Войти'});
+        (Auth.loggedIn() ? ['login'] : ['auctions', 'auction', 'users']).forEach((route) => {
+            if (this.context.router.isActive(route))
+                this.context.router.transitionTo('home');
+        });
         let title = this.context.router.isActive('auctions') ? 'Аукционы' :
                     this.context.router.isActive('auction') ? 'Аукцион' :
                     this.context.router.isActive('users') ? 'Пользователи' :
-                    this.context.router.isActive('user') ? 'Пользователь' :
+                    this.context.router.isActive('login') ? 'Введите логин и пароль' :
                     this.context.router.isActive('home') ? 'Главная' : '';
         return <div>
-            <AppBar title={title} onLeftIconButtonTouchTap={this._toggleNavBar}/>
+            <AppBar title={title} onLeftIconButtonTouchTap={this._toggleNavBar}
+                iconClassNameRight="icomoon-icon-home3"
+                onRightIconButtonTouchTap={ () => { this.context.router.transitionTo('home'); }} />
             <LeftNav id='left-nav' ref='LeftNav' menuItems={menuItems} docked={false} onChange={this._routePage}
                 selectedIndex={this._selectedNavPage(menuItems)} />
-            <RouteHandler {...this.props}/>
+            <div className="app-wrapper">
+                <RouteHandler {...this.props}/>
+            </div>
         </div>;
     }
 }

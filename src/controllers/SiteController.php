@@ -13,6 +13,7 @@ use app\models\Log;
 
 class SiteController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -52,6 +53,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public  function actionPrintr()
+    {
+        $this->Print_r($this->var1);
     }
 
     public function actionLogin()

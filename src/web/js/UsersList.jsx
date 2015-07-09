@@ -3,17 +3,18 @@
  */
 
 import React from 'react';
-import { List } from 'material-ui';
-import UsersItem from './UsersItem';
+import { List, Paper } from 'material-ui';
+import UserItem from './UserItem.jsx';
 
 class UsersList extends React.Component {
     render()
     {
-        return <List>
+        return <Paper zDepth={1} className="users-list"><List>
             {this.props.users.map(user => {
-               return <UsersItem key={user.id} deleteUser={this.props.deleteUser} user={user}/>
+               return <UserItem key={user.id} updateUser={this.props.updateUser}
+               deleteUser={this.props.deleteUser} user={user}/>
             })}
-        </List>;
+        </List></Paper>;
     }
 }
 
