@@ -14,17 +14,6 @@ class Auctions extends React.Component {
         auctionActions.getAuctions();
     }
 
-    constructor()
-    {
-        super();
-        this.showAddAuctionDialog = this.showAddAuctionDialog.bind(this);
-        this.showUpdateAuctionDialog = this.showUpdateAuctionDialog.bind(this);
-        this.addAuction = this.addAuction.bind(this);
-        this.updateAuction = this.updateAuction.bind(this);
-        this.deleteAuction = this.deleteAuction.bind(this);
-        this.refreshAuctions = this.refreshAuctions.bind(this);
-    }
-
     static willTransitionTo(transition, params, query, callback)
     {
         if (!Auth.loggedIn())
@@ -33,34 +22,34 @@ class Auctions extends React.Component {
             callback();
     }
 
-    showAddAuctionDialog()
+    showAddAuctionDialog = () =>
     {
         this.refs.AddAuctionDialog.setState({ auction: {}});
         this.refs.AddAuctionDialog.show();
     }
 
-    showUpdateAuctionDialog(auction)
+    showUpdateAuctionDialog = (auction) =>
     {
         this.refs.UpdateAuctionDialog.setState({auction: auction });
         this.refs.UpdateAuctionDialog.show();
     }
 
-    refreshAuctions()
+    refreshAuctions = () =>
     {
         this.props.flux.getActions('Auctions').getAuctions();
     }
 
-    addAuction(auction)
+    addAuction = (auction) =>
     {
         this.props.flux.getActions('Auctions').createAuction(auction);
     }
 
-    updateAuction(auction)
+    updateAuction = (auction) =>
     {
         this.props.flux.getActions('Auctions').updateAuction(auction);
     }
 
-    deleteAuction(id)
+    deleteAuction = (id) =>
     {
         this.props.flux.getActions('Auctions').deleteAuction(id);
     }

@@ -6,19 +6,13 @@ import React from 'react';
 import { ListItem, IconButton, Avatar, FontIcon } from 'material-ui';
 
 class AuctionItem extends React.Component {
-    constructor()
-    {
-        super();
-        this.deleteAuction = this.deleteAuction.bind(this);
-        this.updateAuction = this.updateAuction.bind(this);
-    }
 
-    deleteAuction(e)
+    deleteAuction = (e) =>
     {
         this.props.deleteAuction(this.props.auction.id);
     }
 
-    updateAuction(e)
+    updateAuction = (e) =>
     {
         this.props.updateAuction(this.props.auction);
     }

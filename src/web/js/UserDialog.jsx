@@ -6,24 +6,16 @@ import React from 'react';
 import {Dialog, TextField} from 'material-ui';
 
 class UserDialog extends React.Component {
-    constructor()
-    {
-        super();
-        this._onDialogSubmit = this._onDialogSubmit.bind(this);
-        this._handleNameChange = this._handleNameChange.bind(this);
-        this._handleDescriptionChange = this._handleDescriptionChange.bind(this);
-        this._handleHashChange = this._handleHashChange.bind(this);
-        this._handleHashCheckChange = this._handleHashCheckChange.bind(this);
-        this.state = {user: {
-            id: '',
-            name: '',
-            description: '',
-            hash: '',
-            hash_check: ''
-        }, errorUserText: '', errorHashText: '', errorHashCheckText: ''};
-    }
+    state = {user: {
+                id: '',
+                name: '',
+                description: '',
+                hash: '',
+                hash_check: ''
+            }, errorUserText: '', errorHashText: '', errorHashCheckText: ''
+        }
 
-    _onDialogSubmit()
+    _onDialogSubmit = () =>
     {
         if (this.state.user.name == undefined || this.state.user.name.length == 0) {
             this.setState({errorUserText : 'Имя пользователя обязательно'});
@@ -41,7 +33,7 @@ class UserDialog extends React.Component {
         this.refs.Dialog.dismiss();
     }
 
-    _handleNameChange(e)
+    _handleNameChange  = (e) =>
     {
         let user = this.state.user;
         let errorUserText = '';
@@ -51,14 +43,14 @@ class UserDialog extends React.Component {
         this.setState({user: user, errorUserText: errorUserText});
     }
 
-    _handleDescriptionChange(e)
+    _handleDescriptionChange = (e) =>
     {
         let user = this.state.user;
         user.description = e.target.value;
         this.setState({user: user});
     }
 
-    _handleHashChange(e)
+    _handleHashChange = (e) =>
     {
         let user = this.state.user;
         let errorHashText = '';
@@ -68,7 +60,7 @@ class UserDialog extends React.Component {
         this.setState({user: user, errorHashText: errorHashText});
     }
 
-    _handleHashCheckChange(e)
+    _handleHashCheckChange = (e) =>
     {
         let user = this.state.user;
         let errorHashCheckText = '';

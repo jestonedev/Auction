@@ -18,11 +18,14 @@
     "material-ui": "*",
     "opn": "*",
     "react": "*",
-    "react-hot-loader": "^1.2.7",
     "react-router": "*",
     "react-tap-event-plugin ": "*",
     "rimraf": "*",
+    "react-hot-loader": "^1.2.7",
     "transform-loader": "^0.2.2",
-    "webpack": "*"
+    "webpack": "*",
+	"babel": "*",
+	"babel-runtime": "*",
+	"babel-core": "*"
   }
 }

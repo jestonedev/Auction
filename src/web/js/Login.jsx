@@ -7,18 +7,11 @@ import Auth from './Auth.js';
 import {TextField, FlatButton, Paper } from 'material-ui';
 
 class Login extends React.Component {
-    constructor()
-    {
-        super();
-        this._handleNameChange = this._handleNameChange.bind(this);
-        this._handleHashChange = this._handleHashChange.bind(this);
-        this._submit = this._submit.bind(this);
-        this.state = {
-            login: '',
-            password: '',
-            error_message: '',
-            transition: undefined
-        }
+    state = {
+        login: '',
+        password: '',
+        error_message: '',
+        transition: undefined
     }
 
     static willTransitionTo(transition, params, query, callback)
@@ -29,17 +22,17 @@ class Login extends React.Component {
             callback();
     }
 
-    _handleNameChange(e)
+    _handleNameChange = (e) =>
     {
         this.setState({login: e.target.value});
     }
 
-    _handleHashChange(e)
+    _handleHashChange = (e) =>
     {
         this.setState({password: e.target.value});
     }
 
-    _submit()
+    _submit = () =>
     {
         Auth.login(this.state.login, this.state.password, (loggined) => {
             if (!loggined)

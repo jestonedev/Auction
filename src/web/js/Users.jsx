@@ -14,17 +14,6 @@ class Users extends React.Component {
         userActions.getUsers();
     }
 
-    constructor()
-    {
-        super();
-        this.showAddUserDialog = this.showAddUserDialog.bind(this);
-        this.showUpdateUserDialog = this.showUpdateUserDialog.bind(this);
-        this.addUser = this.addUser.bind(this);
-        this.updateUser = this.updateUser.bind(this);
-        this.deleteUser = this.deleteUser.bind(this);
-        this.refreshUsers = this.refreshUsers.bind(this);
-    }
-
     static willTransitionTo(transition, params, query, callback)
     {
         if (!Auth.loggedIn())
@@ -33,34 +22,34 @@ class Users extends React.Component {
             callback();
     }
 
-    showAddUserDialog()
+    showAddUserDialog = () =>
     {
         this.refs.AddUserDialog.setState({ user: {}, errorUserText: '', errorHashText: '', errorHashCheckText: ''});
         this.refs.AddUserDialog.show();
     }
 
-    showUpdateUserDialog(user)
+    showUpdateUserDialog = (user) =>
     {
         this.refs.UpdateUserDialog.setState({ user: user, errorUserText: '', errorHashText: '', errorHashCheckText: '' });
         this.refs.UpdateUserDialog.show();
     }
 
-    addUser(user)
+    addUser = (user) =>
     {
         this.props.flux.getActions('Users').createUser(user);
     }
 
-    updateUser(user)
+    updateUser = (user) =>
     {
         this.props.flux.getActions('Users').updateUser(user);
     }
 
-    deleteUser(id)
+    deleteUser = (id) =>
     {
         this.props.flux.getActions('Users').deleteUser(id);
     }
 
-    refreshUsers()
+    refreshUsers = () =>
     {
         this.props.flux.getActions('Users').getUsers();
     }

@@ -6,27 +6,21 @@ import React from 'react';
 import {Dialog, TextField} from 'material-ui';
 
 class AuctionDialog extends React.Component {
-    constructor()
-    {
-        super();
-        this._onDialogSubmit = this._onDialogSubmit.bind(this);
-        this._handleNameChange = this._handleNameChange.bind(this);
-        this._handleDescriptionChange = this._handleDescriptionChange.bind(this);
-        this.state = {auction:  { id: 1,
-            name: '',
-            description: '',
-            startDate: '',
-            startTime: '',
-            endDate: '',
-            endTime: '',
-            startPrice: '0',
-            stepPrice: '100',
-            images: [ ],
-            users: [ ]},
-            errorAuctionText: ''};
-    }
+    state = {auction:  { id: '',
+                name: '',
+                description: '',
+                startDate: '',
+                startTime: '',
+                endDate: '',
+                endTime: '',
+                startPrice: '0',
+                stepPrice: '100',
+                images: [ ],
+                users: [ ]},
+                errorAuctionText: ''
+        }
 
-    _onDialogSubmit()
+    _onDialogSubmit = () =>
     {
         if (this.state.auction.name == undefined || this.state.auction.name.length == 0) {
             this.setState({errorUserText : 'Название аукциона обязательно'});
@@ -36,7 +30,7 @@ class AuctionDialog extends React.Component {
         this.refs.Dialog.dismiss();
     }
 
-    _handleNameChange(e)
+    _handleNameChange = (e) =>
     {
         let auction = this.state.auction;
         let errorAuctionText = '';
@@ -46,7 +40,7 @@ class AuctionDialog extends React.Component {
         this.setState({auction: auction, errorAuctionText: errorAuctionText});
     }
 
-    _handleDescriptionChange(e)
+    _handleDescriptionChange = (e) =>
     {
         let auction = this.state.auction;
         auction.description = e.target.value;

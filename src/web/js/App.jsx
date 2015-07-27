@@ -11,20 +11,17 @@ var InjectTapEventPlugin = require("react-tap-event-plugin");
 InjectTapEventPlugin();
 
 class App extends React.Component {
+    state = {
+        loggedIn: Auth.loggedIn()
+    }
+
     constructor()
     {
         super();
         this._themeManager = new Styles.ThemeManager();
-        this._routePage = this._routePage.bind(this)
-        this._toggleNavBar = this._toggleNavBar.bind(this)
-        this._selectedNavPage = this._selectedNavPage.bind(this)
-        this._setStateOnAuth = this._setStateOnAuth.bind(this)
-        this.state = {
-            loggedIn: Auth.loggedIn()
-        };
     }
 
-    _setStateOnAuth(loggedIn) {
+    _setStateOnAuth = (loggedIn) => {
         this.setState({
             loggedIn: loggedIn
         });
@@ -53,15 +50,15 @@ class App extends React.Component {
         };
     }
 
-    _toggleNavBar() {
+    _toggleNavBar = () => {
         this.refs.LeftNav.toggle();
     }
 
-    _routePage(e, key, payload) {
+    _routePage = (e, key, payload) => {
         this.context.router.transitionTo(payload.route);
     }
 
-    _selectedNavPage(menuItems) {
+    _selectedNavPage = (menuItems) => {
         for (let i = 0; i < menuItems.length; i++) {
             let currentItem = menuItems[i];
             if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;

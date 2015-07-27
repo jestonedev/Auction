@@ -9,14 +9,16 @@ const API_HOST = 'http://itc28/auction/build/web';
 
 class UsersActions extends Actions {
 
-    async getUsers()
-    {
-        return (await fetch(`${API_HOST}/?r=user/index`, {
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })).json();
+    getUsers() {
+        /*return (await fetch(`${API_HOST}/?r=user/index`, {
+         headers: {
+         'Accept': 'application/json'
+         }
+         })).json();*/
+        return [{id: 1, login: "Test", name: "Testt", description: "Opopop"},
+            {id: 2, login: "Test2", name: "Test22", description: "Opopop2"}];
     }
+
 
     deleteUser(id)
     {

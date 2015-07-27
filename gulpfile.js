@@ -129,13 +129,13 @@ gulp.task('webpack', function(callback) {
         module: {
             loaders: [
                 {
-                    test: /\.js/,
+                    test: /\.jsx?$/,
                     loaders: ['transform?brfs', 'babel-loader?stage=0']
                 }
             ]
         },
         resolve: {
-            extensions: ['', '.js', '.json', '.jsx']
+            extensions: ['', '.js', '.jsx']
         }
     }, function(err, stats) {
         callback();

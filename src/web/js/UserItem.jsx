@@ -13,12 +13,12 @@ class UserItem extends React.Component {
         this.updateUser = this.updateUser.bind(this);
     }
 
-    deleteUser(e)
+    deleteUser = (e) =>
     {
         this.props.deleteUser(this.props.user.id);
     }
 
-    updateUser(e)
+    updateUser = (e) =>
     {
         this.props.updateUser(this.props.user);
     }
